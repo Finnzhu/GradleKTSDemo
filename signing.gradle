@@ -1,0 +1,6 @@
+ext {
+    StoreFile = "../test.keystore"
+    StorePassword = "123456"
+    KeyAlias = "test"
+    KeyPassword = "123456"
+}
