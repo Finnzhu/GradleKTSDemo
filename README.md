@@ -2,8 +2,22 @@
 
 Kotlin DSL(also known KTS) will be preferred over Groovy for writing Gradle scripts because Kotlin is more readable and offers better compile-time checking and IDE support. 
 
-We can start to do:
 
+ - KTS Advantage:
+   1. Use Kotlin, and developers may be more familiar with this language and prefer.
+   2. IDE supports better, auto-completion prompts, refactoring, imports, etc.
+   3. Type safety: Kotlin is statically typed.
+   4. No need to migrate all at once: the scripts of the two languages can coexist or call each other.
+
+
+ - KTS Disadvantages
+   1. At present, the construction speed of using KTS may be slower than using Groovy.(so migrating to KTS we should be considered with build performance in mind.)
+
+
+
+<br></br>
+<br></br>
+We will look at the main difference between Groovy DSL and Kotlin DSL from a scripting:
 1. Renamed to gradle.kts.
 
 ```settings.gradle``` -> ```settings.gradle.kts```
@@ -140,10 +154,6 @@ object Libs {
 For more buildSrc directory, please check -> [Better Dependency Management Using buildSrc + Kotlin DSL](https://proandroiddev.com/better-dependencies-management-using-buildsrc-kotlin-dsl-eda31cdb81bf)
 
 
-<br></br>
-8. Last attention： 
-   builds using KTS tend to be slower than builds using Groovy, so migrating to KTS we should be considered with build performance in mind.
-   
 <br></br>
 <br></br>
 Reference:
