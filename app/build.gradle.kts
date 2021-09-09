@@ -1,3 +1,5 @@
+//import java.time.LocalDate
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -18,10 +20,10 @@ android {
 
     defaultConfig {
         applicationId = "com.android.gradlekts"
-        minSdkVersion(Versions.minAndroidSdk)
-        targetSdkVersion(Versions.targetSdkVersion)
-        versionCode = Versions.verCode
-        versionName = Versions.verName
+        minSdkVersion(AppConfig.minAndroidSdk)
+        targetSdkVersion(AppConfig.targetSdkVersion)
+        versionCode = AppConfig.verCode
+        versionName = AppConfig.verName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -51,11 +53,14 @@ android {
             buildConfigField("String", "BASE_URL", "\"https://comdev.example.com/\"")
         }
 
-        getByName(BuildTypes.RELEASE)  {
+        getByName(BuildTypes.RELEASE) {
             isMinifyEnabled = false
             isShrinkResources = false
             isDebuggable = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName(BuildTypes.RELEASE)
             buildConfigField("String", "BASE_URL", "\"https://com.example.com/\"")
         }
@@ -67,7 +72,10 @@ android {
             isDebuggable = false
             applicationIdSuffix = ".${BuildTypes.STG}"
             versionNameSuffix = "-${BuildTypes.STG.toUpperCase()}"
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName(BuildTypes.RELEASE)
 
             buildConfigField("String", "BASE_URL", "\"https://comstg.example.com/\"")
@@ -90,13 +98,30 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+//    testOptions {
+//        animationsDisabled = true
+//        unitTests {
+//            isIncludeAndroidResources = true
+//        }
+//    }
+
+//    lintOptions {
+//        disable("UnusedResources", "other Test")
+//        isCheckReleaseBuilds = false
+//    }
+
+    // here we can import java.time.LocalDate
+//    var testDate = LocalDate.now()
+
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Libs.KOTLIN_VERSION}")
-    implementation("androidx.core:core-ktx:${Libs.CORE_KTX_VERSION}")
+    implementation(Dependencies.kotlinStdLib)
+    implementation(Dependencies.coreKtx)
+    // for example
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0")

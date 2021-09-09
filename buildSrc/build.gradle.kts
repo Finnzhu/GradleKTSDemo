@@ -1,8 +1,11 @@
-// build.gradle.kts
+import org.gradle.kotlin.dsl.`kotlin-dsl`
+
 plugins {
+    // support kts
     `kotlin-dsl`
 }
 
 repositories {
-    gradlePluginPortal()
+    // gradle tools
+    mavenCentral()
 }
